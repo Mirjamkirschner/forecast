@@ -38,6 +38,12 @@ async function showForecast(url, latlng) {
 
     let current = jsondata.properties.timeseries[0].data.instant.details;
     console.log(current);
+
+    let marker = `
+        <h4>Aktuelles Wetter für ${latlng.lat.toFixed(4)}, ${latlng.lng.toFixed(4)}</h4>
+    `;
+
+    L.popup().setLatLng(latlng).setContent(marker).openOn(map);
 }
 
 // auf Kartenklick reagieren
