@@ -41,6 +41,8 @@ async function showForecast(url, latlng) {
 
     let timestamp = new Date(jsondata.properties.meta.updated_at).toLocaleString();
 
+    let timeseries = jsondata.properties.timeseries;
+
     let marker = `
         <h4>Wetter für ${latlng.lat.toFixed(4)}, ${latlng.lng.toFixed(4)} (${timestamp})</h4>
         <table>
@@ -52,7 +54,10 @@ async function showForecast(url, latlng) {
             <tr><td>Windgeschwindigkeit (m/s)</td><td>${current.wind_speed}</td></tr>
         </table>
     `;
+    for(let i = 0; i<=24; i+=3){
+        console.log(timeseries[i]);
 
+    }
     L.popup().setLatLng(latlng).setContent(marker).openOn(map);
 }
 
