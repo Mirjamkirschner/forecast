@@ -55,8 +55,11 @@ async function showForecast(url, latlng) {
         </table>
     `;
     for(let i = 0; i<=24; i+=3){
-        console.log(timeseries[i]);
-
+        //console.log(timeseries[i]);
+        let icon = timeseries[i].data.next_1_hours.summary.symbol_code;
+        let image = `icons/${icon}.svg`;
+        marker += `<img src="${image}" style="width:32px;" title="${timeseries[i].time.toLocaleString()}">`
+        console.log(icon, image);
     }
     L.popup().setLatLng(latlng).setContent(marker).openOn(map);
 }
@@ -67,3 +70,8 @@ map.on("click", function(evt) {
     let url = `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${evt.latlng.lat}&lon=${evt.latlng.lng}`;
     showForecast(url, evt.latlng);
 });
+
+//Klick auf Innsbruck simulieren
+map.fireEvent("click", {
+    latlng: L.latLng(ibk.lat, ibk.lng)
+})
