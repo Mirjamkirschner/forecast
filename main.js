@@ -83,6 +83,20 @@ async function loadWind(url) {
     let response = await fetch(url);
     let jsondata = await response.json();
     console.log(jsondata);
+
+    var velocityLayer = L.velocityLayer({
+        displayValues: true,
+        lineWidth: 2,
+        displayOptions: {
+          velocityType: "",
+          position: "bottomright",
+          emptyString: "Keine Daten vorhanden",
+          speedUnit: "k/h",
+          directionString: "Windrichtung",
+          speedString: "Geschwindigkeit",
+        },
+        data: jsondata, 
+      }).addTo(map);
 }
 
 loadWind("https://geographie.uibk.ac.at/data/ecmwf/data/wind-10u-10v-europe.json");
