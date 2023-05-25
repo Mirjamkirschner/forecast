@@ -41,6 +41,14 @@ async function showForecast(url, latlng) {
 
     let marker = `
         <h4>Aktuelles Wetter für ${latlng.lat.toFixed(4)}, ${latlng.lng.toFixed(4)}</h4>
+        <table>
+            <tr><td>Luftdruck (hPA)</td><td>${current.air_pressure_at_sea_level}</td></tr>
+            <tr><td>Lufttemperatur (°C)</td><td>${current.air_temperature}</td></tr>
+            <tr><td>Bewölkungsgrad (%)</td><td>${current.cloud_area_fraction}</td></tr>
+            <tr><td>Relative Luftfeuchtigkeit (%)</td><td>${current.relative_humidity}</td></tr>
+            <tr><td>Windrichtung (°)</td><td>${current.wind_from_direction}</td></tr>
+            <tr><td>Windgeschwindigkeit (m/s)</td><td>${current.wind_speed}</td></tr>
+        </table>
     `;
 
     L.popup().setLatLng(latlng).setContent(marker).openOn(map);
