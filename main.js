@@ -13,7 +13,8 @@ let map = L.map("map", {
 
 // thematische Layer
 let themaLayer = {
-    forecast: L.featureGroup()
+    forecast: L.featureGroup(),
+    wind: L.featureGroup()
 }
 
 // Hintergrundlayer
@@ -22,7 +23,8 @@ let layerControl = L.control.layers({
     "Esri WorldTopoMap": L.tileLayer.provider("Esri.WorldTopoMap"),
     "Esri WorldImagery": L.tileLayer.provider("Esri.WorldImagery").addTo(map)
 }, {
-    "Wettervorhersage MET Norway": themaLayer.forecast.addTo(map)
+    "Wettervorhersage MET Norway": themaLayer.forecast.addTo(map),
+    "ECMWF Wind": themaLayer.wind.addTo(map)
 }).addTo(map);
 
 // Maßstab
@@ -96,7 +98,7 @@ async function loadWind(url) {
           speedString: "Geschwindigkeit",
         },
         data: jsondata, 
-      }).addTo(map);
+      }).addTo(themaLayer.wind);
 }
 
 loadWind("https://geographie.uibk.ac.at/data/ecmwf/data/wind-10u-10v-europe.json");
