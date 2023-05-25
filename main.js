@@ -75,3 +75,14 @@ map.on("click", function(evt) {
 map.fireEvent("click", {
     latlng: L.latLng(ibk.lat, ibk.lng)
 })
+
+//Winddaten laden
+//https://geographie.uibk.ac.at/data/ecmwf/data/wind-10u-10v-europe.json
+
+async function loadWind(url) {
+    let response = await fetch(url);
+    let jsondata = await response.json();
+    console.log(jsondata);
+}
+
+loadWind("https://geographie.uibk.ac.at/data/ecmwf/data/wind-10u-10v-europe.json");
