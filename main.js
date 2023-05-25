@@ -35,6 +35,9 @@ async function showForecast(url, latlng) {
     let response = await fetch(url);
     let jsondata = await response.json();
     console.log(jsondata, latlng);
+
+    let current = jsondata.properties.timeseries[0].data.instant.details;
+    console.log(current);
 }
 
 // auf Kartenklick reagieren
